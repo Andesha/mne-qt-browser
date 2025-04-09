@@ -1026,7 +1026,7 @@ class OverviewBar(QGraphicsView):
         bad_set = set(self.mne.info["bads"])
         with open('.local_reject', 'w') as f:
             xmin, xmax = self.mne.t_start, self.mne.t_start + self.mne.duration
-            f.write('pylossless-qc-reference')
+            f.write('pylossless-qc-reference\n')
             f.write(f"{xmin},{xmax}\n")
             f.write(str(bad_set) + '\n')
         line_set = set(self.bad_line_dict)
