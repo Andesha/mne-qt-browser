@@ -1024,6 +1024,11 @@ class OverviewBar(QGraphicsView):
     def update_bad_channels(self):
         """Update representation of bad channels."""
         bad_set = set(self.mne.info["bads"])
+        with open('.local_reject', 'w') as f:
+            xmin, xmax = self.mne.t_start, self.mne.t_start + self.mne.duration
+            f.write('pylossless-qc-reference')
+            f.write(f"{xmin},{xmax}\n")
+            f.write(str(bad_set) + '\n')
         line_set = set(self.bad_line_dict)
 
         add_chs = bad_set.difference(line_set)
